@@ -27,9 +27,13 @@ Infected - categorical.
 
 Infected depends on treatment among drug users.
 
-We get just the drug users from the population. 
+We get just the drug users from the population.
 
-<!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+```{r}
+drugUsersData = select(triUmp, treatment, DrugUser, infected)
+drugUsersData = filter(drugUsersData, DrugUser== "yes")
+```
+
 
 # Results
 
@@ -40,6 +44,14 @@ We get just the drug users from the population.
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+
+```{r}
+barchartGC(~infected + treatment,data=drugUsersData)
+barchartGC(~infected + treatment,data=drugUsersData, type="percent")
+```
+
+The percent bar chart shows that those that have been given the placebo have a higher percentage, vs those who got the real drug have a lower percentage, meaning the drug is working!
 
 ### Numerical Descriptive Results
 
